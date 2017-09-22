@@ -4,6 +4,7 @@
   "author": "Phil",
   "dependencies": {
     "async": "^2.5.0",
+    "body-parser": "^1.18.1",
     "csvtojson": "^1.1.7",
     "express": "^4.15.4",
     "fixy": "^1.1.0",
