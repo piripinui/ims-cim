@@ -119,7 +119,7 @@ app.post('/load', function(req, res) {
 		console.log("POST request ok.");
 		//console.log(req.body);
 		
-		var regex = /New Circuit\.(.*?) /m;
+		var regex = /New Circuit\.(.*?)/m;
 		var match = regex.exec(req.body);
 		console.log("Circuit = " + match[1]);
 		
