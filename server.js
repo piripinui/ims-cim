@@ -10,12 +10,12 @@ helmet = require('helmet');
 
 var resultDir = process.cwd() + "\\data";
 
-var listenPort = process.env.PORT || 3000;
+var listenPort = process.env.PORT || 3100;
 
 app.use(express.static(__dirname + '/public'));
 
-app.use(bodyParser.text());
-app.use(bodyParser.json());
+app.use(bodyParser.text({limit: '50mb'}));
+app.use(bodyParser.json({limit: '50mb'}));
 
 var q = async.queue(function(task, callback) {	
 	var res = task.response;
@@ -67,7 +67,7 @@ var q = async.queue(function(task, callback) {
 						csv()
 						.fromFile(resultFile)
 						.on('json',(csvRow)=>{
-							// Push the voltage results.
+							// Push the losses results.
 							pfResult.losses.push(csvRow);
 						})
 						.on('done', (error) => {
@@ -80,7 +80,7 @@ var q = async.queue(function(task, callback) {
 							res.end();
 							
 							// Remove the result files.
-							fs.unlink(resultDir + "\\voltage.csv", function() {	
+							/* fs.unlink(resultDir + "\\voltage.csv", function() {	
 								console.log("Deleted " + resultDir + "\\voltage.csv");
 								fs.unlink(resultDir + "\\current.csv", function() {	
 									console.log("Deleted " + resultDir + "\\current.csv");
@@ -92,7 +92,7 @@ var q = async.queue(function(task, callback) {
 										});
 									});
 								});
-							});
+							}); */
 						});
 					});
 				});
@@ -117,7 +117,7 @@ app.post('/load', function(req, res) {
 	}
 	else {
 		console.log("POST request ok.");
-		//console.log(req.body);
+		console.log(req.body);
 		
 		var regex = /New Circuit\.(.*?)/m;
 		var match = regex.exec(req.body);

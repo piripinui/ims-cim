@@ -1,14 +1,7 @@
 clear
-set DefaultBaseFrequency=50
-New Circuit.MV004  
-Edit Vsource.Source BasekV=66 
-New Transformer.Bourne_Primary_TX001 Buses=[SourceBus, Primary_Dist_Bus] Conns=[Wye Wye] kVs=[66 11] kVA=1500
-New Linecode.3A_ACSR_100_11 Units=km 
-New Line.LINE1 Bus1=Primary_Dist_Bus Bus2=LoadBus Linecode=3A_ACSR_100_11 Length=1.209 Units=km
-New Linecode.3A_OHL_50_11 Units=km 
-New Line.LINE2 Bus1=LoadBus Bus2=SecondaryBus Linecode=3A_OHL_50_11 Length=0.540 Units=km 
-New Transformer.Park_Farm_PM_TX Buses=[SecondaryBus, Residential_Dist_Bus] Conns=[Delta Wye] kVs=[11 .240] kVA=50
-New Load.LOADA Bus1=Residential_Dist_Bus.1 Phases=1 kV=0.400 kW=53.2 PF=.95 ! 7 houses (7 * 7.6 = 53.3kW) on phase A
-New Load.LOADB Bus1=Residential_Dist_Bus.2 Phases=1 kV=0.400 kW=68.4 PF=.95 ! 9 houses (9 * 7.6 = 68.4kW) on phase B
-New Load.LOADC Bus1=Residential_Dist_Bus.3 Phases=1 kV=0.400 kW=45.6 PF=.95 ! 6 houses (6 * 7.6 = 45.6kW) on phase C
-				
+New Circuit.Powerflow
+Edit Vsource.Source BasekV=13.2
+New Transformer.1791128 Buses=[SourceBus,LS_1791128] Conns=[Wye,Wye] kVs=[13.2,0.12] kVA=75.0
+New Transformer.1791105 Buses=[SourceBus,LS_1791105] Conns=[Wye,Wye] kVs=[13.2,0.12] kVA=75.0
+New Load.1768333_C Bus1=LS_1791105.3 kV=0.12 kW=1e10 PF=.95
+New Load.1768342_C Bus1=LS_1791128.3 kV=0.12 kW=1e10 PF=.95
