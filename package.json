@@ -9,11 +9,16 @@
     "express": "^4.15.4",
     "helmet": "^3.8.1",
     "ps-node": "^0.1.6",
-    "request": "^2.81.0"
+    "request": "^2.81.0",
+    "snyk": "^1.189.0"
   },
   "engines": {
     "node": ">0.10.45",
     "npm": "3.10.2"
   },
-  "scripts": {}
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }
